@@ -6,6 +6,7 @@
 #include <random>
 #include <ctime>
 #include <vector>
+#include <ctime>
 
 #define PI 3.14159265
 
@@ -152,6 +153,7 @@ double func_rand(double alpha, double dzeta, vector<Galaxy>(&mass), vector <vect
 
 int main()
 {
+	unsigned int start_time = clock();
 	srand(static_cast<unsigned int>(time(0)));
 
 	double n=0,m=0,cw=0,tr=0;
@@ -195,12 +197,14 @@ int main()
 		res <<"cw = "<< cw << endl;
 		cw = 0;
 		n++;
+		if (n == 1) { unsigned int end_iter_time = clock(); res << "iter_time " << end_iter_time - start_time << " ms" << endl;}
 	}
 
 	res<< endl <<"n "<< n <<endl;
 	res << "m "<< m << endl;
 	res << "done" << endl;
-
+	unsigned int end_time = clock();
+	res<<"time "<< end_time - start_time<< " ms"<<endl;
 	system("pause");
 	return 0;
 }
