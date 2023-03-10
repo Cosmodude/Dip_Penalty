@@ -101,11 +101,12 @@ double func_real(double alpha, double dzeta, vector <Galaxy>(&mass), vector<vect
 	double sum = 0;
 	vector<double> cosine;
 
-	for (int i = 0; i < mass.size(); i++)
+	for (int j = 0; j < mass.size(); j++)
 	{
-		cosine.push_back(mass[i].cosine(alpha, dzeta));
+	//лишнее, поправить
+	cosine.push_back(mass[j].cosine(alpha, dzeta));
 //random data use
-		if (abs(cosine[i]) * (one[1000][i]) == cosine[i])
+		if (abs(cosine[j]) * (one[1000][j]) == cosine[j])
 		{
 			sum++;
 		}
@@ -160,15 +161,15 @@ int main()
 	vector <Galaxy> tdata;
 	read_t(tdata, "catalog.csv");
 	vector <vector <int>> fdata;
-	ofstream res("results.txt");
-	ofstream pic("picture.txt");
+	ofstream res("results_test.txt");
+	ofstream pic("picture_test.txt");
 	
 	while (tr < 101) 
 	{
 		double sumr = 0,pr=0, temp=0;
 		res << "in process " << n+1 << endl;
 		rand_one( tdata.size(),fdata );
-		ofstream fout("pen_dip.txt");
+		ofstream fout("pen_dip_test.txt");
 		for (double ra = 0; ra < 361; ra += 5)
 		{
 			for (double dec = -90; dec < 91; dec += 5)
@@ -179,7 +180,7 @@ int main()
 				fout << ra << "\t" << dec << "\t" << pr << endl;
 				if(n==0){ pic << ra << "\t" << dec << "\t" << pr << endl; }
 				m++;
-				if (pr > 2.4)
+				if (pr > 2.8)
 				{
 					tr = 200;
 					res << "ra = " << ra << "  " << "dec = " << dec << "  "<< "pr = "<<pr<< endl;
